@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Lecturer Page";
+}
+
+
+<body>
+
+    <h2>Lecturer Claim Submission</h2>
+
+    <form id="claimForm" action="/submitClaim" method="POST">
+        <h3>Personal Details</h3>
+        <label>Lecturer Name:</label>
+        <input type="text" name="LecturerName" required>
+
+        <label>Lecturer Surname:</label>
+        <input type="text" name="LecturerSurname" required>
+
+        <label>Employee No:</label>
+        <input type="text" name="EmployeeNo" required>
+
+        <label>Contact Details:</label>
+        <input type="text" name="ContactDetails" required>
+
+        <h3>Claim Details</h3>
+        <div id="modulesContainer">
+            <!-- First module block -->
+            <div class="module-block">
+                <label>Module:</label>
+                <input type="text" name="Module[]" required>
+
+                <label>Programme:</label>
+                <input type="text" name="Programme[]" required>
+
+                <label>Number of Hours:</label>
+                <input type="number" name="Hours[]" required>
+
+                <label>Hourly Rate:</label>
+                <input type="number" name="HourlyRate[]" step="0.01" required>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button type="button" onclick="addModule()">Add Another Module</button>
+            <button type="submit">Submit Claim</button>
+        </div>
+    </form>
+
+    <script>
+        function addModule() {
+            const container = document.getElementById('modulesContainer');
+            const newModule = document.createElement('div');
+            newModule.classList.add('module-block');
+
+            newModule.innerHTML = `
+                        <label>Module:</label>
+                        <input type="text" name="Module[]" required>
+
+                        <label>Programme:</label>
+                        <input type="text" name="Programme[]" required>
+
+                        <label>Number of Hours:</label>
+                        <input type="number" name="Hours[]" required>
+
+                        <label>Hourly Rate:</label>
+                        <input type="number" name="HourlyRate[]" step="0.01" required>
+                    `;
+
+            container.appendChild(newModule);
+        }
+    </script>
+
+</body>
+</html>
